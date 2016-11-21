@@ -1,0 +1,52 @@
+group 'com.demo'
+version '1.0-SNAPSHOT'
+
+apply plugin: "java"
+apply plugin: "spring-boot"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+buildscript {
+    ext {
+        springBootVersion = "1.2.3.RELEASE"
+        junitVersion = "4.11"
+    }
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "http://repo.spring.io/plugins-release" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework:springloaded:${springBootVersion}")
+        classpath("org.springframework.build.gradle:propdeps-plugin:0.0.6")
+
+    }
+
+}
+
+//for maven config
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "http://localhost:8088/nexus/content/repositories/snapshots/") {
+            authentication(userName: "admin", password: "admin123")
+            pom.groupId = "com.juvenxu"
+            pom.artifactId = "account-captcha"
+        }
+    }
+}
