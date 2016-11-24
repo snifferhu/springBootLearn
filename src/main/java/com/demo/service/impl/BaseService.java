@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+
 /**
  * Created by Sniff on 2016/11/3.
  */
@@ -16,10 +18,11 @@ public abstract class BaseService implements Service {
     @Override
     public String doSomeThing() {
         logger.info("test {}", System.currentTimeMillis());
-        logger.debug("This is a debug message");
-        logger.info("This is an info message");
-        logger.warn("This is a warn message");
-        logger.error("This is an error message");
+        logger.debug("This is a debug message 你大爷");
+        logger.info("This is an info message 你大爷");
+        logger.warn("This is a warn message 你大爷");
+        logger.error("This is an error message 你大爷");
+        logger.error(String.valueOf(new IOException()));
         return "hello " + who() + testService.doSomeThing();
     }
 

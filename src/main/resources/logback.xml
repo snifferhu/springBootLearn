@@ -9,33 +9,13 @@
             <pattern> %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </layout>
     </appender>
-    <!--<appender name="File-Appender" class="ch.qos.logback.core.FileAppender">-->
-        <!--<file>${LOG_PATH}/logfile-${timestamp-by-second}.log</file>-->
-        <!--<encoder>-->
-            <!--<pattern> %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
-            <!--<outputPatternAsHeader>true</outputPatternAsHeader>-->
-        <!--</encoder>-->
-    <!--</appender>-->
-    <!--
-    <appender name="RollingFile-Appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/rollingfile.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_ARCHIVE}/rollingfile.log%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>30</maxHistory>
-            <totalSizeCap>1KB</totalSizeCap>
-        </rollingPolicy>
-        <encoder>
-            <pattern> %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-        <appender name="Async-Appender" class="ch.qos.logback.classic.AsyncAppender">
-        <appender-ref ref="RollingFile-Appender" />
-    </appender>
-    -->
+
+    <!-- this is kafka Appender -->
     <appender name="kafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">
         <!-- This is the default encoder that encodes every log message to an utf8-encoded string  -->
-        <encoder class="com.github.danielwegener.logback.kafka.encoding.LayoutKafkaMessageEncoder" />
-
+        <encoder class="com.github.danielwegener.logback.kafka.encoding.LayoutKafkaMessageEncoder" >
+            <layout class="net.logstash.logback.layout.LogstashLayout"/>
+        </encoder>
         <topic>test-log</topic>
         <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.RoundRobinKeyingStrategy" />
         <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
@@ -45,12 +25,23 @@
         <!-- bootstrap.servers is the only mandatory producerConfig -->
         <producerConfig>bootstrap.servers=172.31.5.41:9092,172.31.5.42:9092,172.31.5.43:9092</producerConfig>
 
-        <!-- this is the fallback appender if kafka is not available. -->
 
+    </appender>
+
+    <!-- 异步输出，当然异步日志的风险是当程序crash时，会丢失所有未输出的日志，对查看程序crash原因会造成一定的影响 -->
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender" >
+        <!-- 不丢失日志. -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 异步队列深度，该值会影响性能 -->
+        <queueSize>256</queueSize>
+        <appender-ref ref="kafkaAppender" />
     </appender>
 
 
     <root level="INFO">
-        <appender-ref ref="kafkaAppender" />
+        <!-- 开发环境配置为 STDOUT -->
+        <!-- 测试&生产环境配置为 async -->
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ASYNC" />
     </root>
 </configuration>
