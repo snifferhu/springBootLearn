@@ -14,3 +14,12 @@
 hs_err_pid*
 
 .idea
+build/classes/
+build/dependency-cache/
+build/tmp/compileJava/
+out/
+.tar
+.zip
+build
+log
+
