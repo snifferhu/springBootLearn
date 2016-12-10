@@ -13,7 +13,6 @@ repositories {
     mavenCentral()
 }
 
-
 ext {
     springBootVersion = "1.4.2.RELEASE"
     gradlePropdepsVersion = "0.0.6"
@@ -30,9 +29,8 @@ dependencies {
 
 buildscript {
     ext {
-        springBootVersion = "1.4.2.RELEASE"
-        gradlePropdepsVersion = "0.0.6"
-        springLoadedVersion = "1.2.3.RELEASE"
+        spring_boot_gradle_version = "1.2.3.RELEASE"
+        junitVersion = "4.11"
     }
     repositories {
         mavenLocal()
@@ -42,11 +40,11 @@ buildscript {
         maven { url "http://repo.spring.io/plugins-release" }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("org.springframework:springloaded:${springLoadedVersion}")
-        classpath("org.springframework.build.gradle:propdeps-plugin:${gradlePropdepsVersion}")
-    }
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_gradle_version}")
+        classpath("org.springframework:springloaded:${spring_boot_gradle_version}")
+        classpath("org.springframework.build.gradle:propdeps-plugin:0.0.6")
 
+    }
 }
 
 uploadArchives {

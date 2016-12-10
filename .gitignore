@@ -18,6 +18,7 @@ build/*
 gradlew*
 gradle
 .gradle
+out
 out/*
 .tar
 .zip
