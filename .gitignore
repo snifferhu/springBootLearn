@@ -17,12 +17,13 @@ hs_err_pid*
 build/classes/
 build/dependency-cache/
 build/tmp/compileJava/
+build/*
 gradlew*
 gradle
 .gradle
+.gradle/2.13
 out/
 .tar
 .zip
 build
 logs
-
