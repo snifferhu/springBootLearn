@@ -4,24 +4,32 @@ version '1.0-SNAPSHOT'
 apply plugin: "java"
 apply plugin: "spring-boot"
 
+//for maven config
+apply plugin: 'maven'
+
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
+ext {
+    springBootVersion = "1.4.2.RELEASE"
+    gradlePropdepsVersion = "0.0.6"
+    logbackKafkaVersion = "0.1.0"
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     compile("net.logstash.logback:logstash-logback-encoder:4.4")
-    runtime("com.github.danielwegener:logback-kafka-appender:0.1.0")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    runtime("com.github.danielwegener:logback-kafka-appender:${logbackKafkaVersion}")
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 }
 
 buildscript {
     ext {
-        springBootVersion = "1.2.3.RELEASE"
+        spring_boot_gradle_version = "1.2.3.RELEASE"
         junitVersion = "4.11"
     }
     repositories {
@@ -32,16 +40,12 @@ buildscript {
         maven { url "http://repo.spring.io/plugins-release" }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("org.springframework:springloaded:${springBootVersion}")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_gradle_version}")
+        classpath("org.springframework:springloaded:${spring_boot_gradle_version}")
         classpath("org.springframework.build.gradle:propdeps-plugin:0.0.6")
 
     }
-
 }
-
-//for maven config
-apply plugin: 'maven'
 
 uploadArchives {
     repositories.mavenDeployer {
