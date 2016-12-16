@@ -51,6 +51,7 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test:${spring_boot_starter_version}")
 }
 
+
 uploadArchives {
     repositories.mavenDeployer {
         repository(url: "http://localhost:8088/nexus/content/repositories/snapshots/") {
