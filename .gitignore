@@ -14,15 +14,12 @@
 hs_err_pid*
 
 .idea
-build/classes/
-build/dependency-cache/
-build/tmp/compileJava/
+build
 gradlew*
 gradle
 .gradle
 out/
 .tar
 .zip
-build
 logs
 
