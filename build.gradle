@@ -20,6 +20,7 @@ buildscript {
 ext {
     spring_boot_starter_version = "1.4.2.RELEASE"
     logback_kafka_version = "0.1.0"
+    guava_version = "20.0"
     self_verion = "0.1.0-SNAPSHOT"
 }
 
@@ -45,6 +46,7 @@ targetCompatibility = 1.8
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile("com.google.guava:guava:${guava_version}")
     compile("org.springframework.boot:spring-boot-starter-web:${spring_boot_starter_version}")
     compile("net.logstash.logback:logstash-logback-encoder:4.4")
     runtime("com.github.danielwegener:logback-kafka-appender:${logback_kafka_version}")
