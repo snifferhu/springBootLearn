@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
-import com.google.common.collect.ImmutableMap;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -26,12 +26,13 @@ import java.util.stream.Collectors;
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private static Map<Long, User> users = ImmutableMap
-            .<Long, User>builder()
-            .put(1L, new UserBuilder().setId(1L).setName("小鸭").setAge(23).createUser())
-            .put(2L, new UserBuilder().setId(2L).setName("小鸡").setAge(22).createUser())
-            .put(3L, new UserBuilder().setId(3L).setName("小鹅").setAge(24).createUser())
-            .build();
+    private static Map<Long, User> users = new HashMap<Long, User>(){
+        {
+            put(1L, new UserBuilder().setId(1L).setName("小鸭").setAge(23).createUser());
+            put(2L, new UserBuilder().setId(2L).setName("小鸡").setAge(22).createUser());
+            put(3L, new UserBuilder().setId(3L).setName("小鹅").setAge(24).createUser());
+        }
+    };
 
     @GetMapping
     public List<User> getUserList() {
@@ -55,8 +56,8 @@ public class UserController {
         return "success";
     }
 
-    @PostMapping(value = "/{id}/{name}/{age}")
-    public String addUser(@ModelAttribute User user) {
+    @PostMapping
+    public String addUser(@RequestBody User user) {
         if (user != null && users.containsKey(user.getId())) {
             return "fail";
         }

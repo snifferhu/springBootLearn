@@ -6,10 +6,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -39,23 +42,23 @@ public class UserControllerTest extends BaseControllerTest {
         request = get("/users/");
         mvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("[{\"id\":1,\"name\":\"小鸭\",\"age\":23},{\"id\":2,\"name\":\"小鸡\",\"age\":22},{\"id\":3,\"name\":\"小鹅\",\"age\":24}]")));
+                .andExpect(content().string(notNullValue()));
     }
 
     @Test
     public void getUserById() throws Exception {
         // 2、get一个id为1的user
-        request = get("/users/1");
+        request = get("/users/2");
         mvc.perform(request)
-                .andExpect(content().string(equalTo("{\"id\":1,\"name\":\"小鸭\",\"age\":23}")));
+                .andExpect(content().string(equalTo("{\"id\":2,\"name\":\"小鸡\",\"age\":22}")));
     }
 
     @Test
     public void updateUser() throws Exception {
         // 3、put修改id为1的user
         request = put("/users/1")
-                .param("name", "测试终极大师")
-                .param("age", "30");
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"小鹿\",\"age\":30}");
         mvc.perform(request)
                 .andExpect(content().string(equalTo("success")));
     }
@@ -64,11 +67,10 @@ public class UserControllerTest extends BaseControllerTest {
     public void addUser() throws Exception {
         // 4、post提交一个user
         request = post("/users/")
-                .param("id", "1")
-                .param("name", "测试大师")
-                .param("age", "20");
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"id\":6,\"name\":\"小菜\",\"age\":23}");
         mvc.perform(request)
-//				.andDo(MockMvcResultHandlers.print())
+				.andDo(MockMvcResultHandlers.print())
                 .andExpect(content().string(equalTo("success")));
     }
 
