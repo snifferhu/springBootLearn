@@ -9,6 +9,11 @@ public class User {
     private String name;
     private Integer age;
 
+    /**
+     * 在controller中,利用ModelAttribute作为接收参数注解的情况下
+     * 没有默认构造方法,页面报错
+     * No default constructor found; nested exception is java.lang.NoSuchMethodException
+     */
     public User(){}
 
     public User(Long id, String name, Integer age) {
