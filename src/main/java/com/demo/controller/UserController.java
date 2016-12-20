@@ -60,7 +60,19 @@ public class UserController {
         if (user != null && users.containsKey(user.getId())) {
             return "fail";
         }
-        users.put(user.getId(), user);
+        User result = users.put(user.getId(), user);
+        logger.info("add user:{}",result);
+        return "success";
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public String deleteUser(@PathVariable Long id){
+        if (!users.containsKey(id)){
+            logger.warn("delete user failed, id:{}",id);
+            return "fail";
+        }
+        User result = users.remove(id);
+        logger.info("delete user:{}",result);
         return "success";
     }
 }
