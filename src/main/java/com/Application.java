@@ -1,6 +1,5 @@
-package com.demo;
+package com;
 
-import com.demo.service.impl.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

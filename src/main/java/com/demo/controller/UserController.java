@@ -2,6 +2,9 @@ package com.demo.controller;
 
 import com.demo.controller.bean.User;
 import com.demo.controller.bean.UserBuilder;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -35,16 +38,23 @@ public class UserController {
         }
     };
 
+    @ApiOperation(value="获取用户列表", notes="")
     @GetMapping
     public List<User> getUserList() {
         return users.values().stream().collect(Collectors.toList());
     }
 
+    @ApiOperation(value="获取用户详细信息", notes="根据url的id来获取用户详细信息")
     @GetMapping(value = "/{id}")
     public User getUserById(@PathVariable Long id) {
         return users.get(id);
     }
 
+    @ApiOperation(value="更新用户详细信息", notes="根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long"),
+            @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
+    })
     @PutMapping(value = "/{id}")
     public String updateUser(@PathVariable Long id,@Valid @RequestBody User user) {
         if (!users.containsKey(id)) {
@@ -57,6 +67,8 @@ public class UserController {
         return "success";
     }
 
+    @ApiOperation(value="创建用户", notes="根据User对象创建用户")
+    @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
     @PostMapping
     public String addUser(@Valid @RequestBody User user) {
         if (user != null && users.containsKey(user.getId())) {
@@ -68,6 +80,8 @@ public class UserController {
         return "success";
     }
 
+    @ApiOperation(value="删除用户", notes="根据url的id来指定删除对象")
+    @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long")
     @DeleteMapping(value = "/{id}")
     public String deleteUser(@PathVariable Long id) {
         if (!users.containsKey(id)) {
