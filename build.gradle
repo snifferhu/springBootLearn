@@ -21,6 +21,9 @@ ext {
     spring_boot_starter_version = "1.4.2.RELEASE"
     logback_kafka_version = "0.1.0"
     guava_version = "20.0"
+    hibernate_validator_version = "5.3.4.Final"
+    tomcat_embed_el_version = "8.5.6"
+
     self_verion = "0.1.0-SNAPSHOT"
 }
 
@@ -46,6 +49,9 @@ targetCompatibility = 1.8
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile("org.hibernate:hibernate-validator:${hibernate_validator_version}")
+    compile("org.apache.tomcat.embed:tomcat-embed-el:${tomcat_embed_el_version}")
+
     compile("com.google.guava:guava:${guava_version}")
     compile("org.springframework.boot:spring-boot-starter-web:${spring_boot_starter_version}")
     compile("net.logstash.logback:logstash-logback-encoder:4.4")

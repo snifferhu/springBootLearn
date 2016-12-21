@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ import java.util.stream.Collectors;
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private static Map<Long, User> users = new HashMap<Long, User>(){
+    private static Map<Long, User> users = new HashMap<Long, User>() {
         {
             put(1L, new UserBuilder().setId(1L).setName("小鸭").setAge(23).createUser());
             put(2L, new UserBuilder().setId(2L).setName("小鸡").setAge(22).createUser());
@@ -45,7 +46,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}")
-    public String updateUser(@PathVariable Long id, @RequestBody User user) {
+    public String updateUser(@PathVariable Long id,@Valid @RequestBody User user) {
         if (!users.containsKey(id)) {
             logger.warn("update user failed ,id:{} ,user:{}", id, user);
             return "fail";
@@ -57,23 +58,24 @@ public class UserController {
     }
 
     @PostMapping
-    public String addUser(@RequestBody User user) {
+    public String addUser(@Valid @RequestBody User user) {
         if (user != null && users.containsKey(user.getId())) {
+            logger.warn("add user fail,user:{}", user);
             return "fail";
         }
         User result = users.put(user.getId(), user);
-        logger.info("add user:{}",result);
+        logger.info("add user:{}", result);
         return "success";
     }
 
     @DeleteMapping(value = "/{id}")
-    public String deleteUser(@PathVariable Long id){
-        if (!users.containsKey(id)){
-            logger.warn("delete user failed, id:{}",id);
+    public String deleteUser(@PathVariable Long id) {
+        if (!users.containsKey(id)) {
+            logger.warn("delete user failed, id:{}", id);
             return "fail";
         }
         User result = users.remove(id);
-        logger.info("delete user:{}",result);
+        logger.info("delete user:{}", result);
         return "success";
     }
 }
