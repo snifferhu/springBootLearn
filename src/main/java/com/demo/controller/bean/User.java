@@ -1,12 +1,25 @@
 package com.demo.controller.bean;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 /**
  * @auth snifferhu
  * @date 2016/12/18 14:16
  */
 public class User {
     private Long id;
+
+    @NotNull
+    @Size(max = 14)
     private String name;
+
+
+    @NotNull
+    @Min(1)
+    @Max(value = 150,message = "没谁能超过150岁")
     private Integer age;
 
     /**
