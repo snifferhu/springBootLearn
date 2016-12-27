@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import com.common.cache.annotation.Cached;
 import com.demo.controller.bean.User;
 import com.demo.controller.bean.UserBuilder;
 import io.swagger.annotations.ApiImplicitParam;
@@ -69,6 +70,7 @@ public class UserController {
 
     @ApiOperation(value="创建用户", notes="根据User对象创建用户")
     @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
+    @Cached(key = "user")
     @PostMapping
     public String addUser(@Valid @RequestBody User user) {
         if (user != null && users.containsKey(user.getId())) {
