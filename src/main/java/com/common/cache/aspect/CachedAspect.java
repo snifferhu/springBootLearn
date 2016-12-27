@@ -1,5 +1,7 @@
 package com.common.cache.aspect;
 
+import com.demo.controller.bean.User;
+import com.demo.controller.bean.UserBuilder;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -20,7 +22,7 @@ public class CachedAspect {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private RedisTemplate redisTemplate;
 
     @Pointcut("@annotation(com.common.cache.annotation.Cached)")
     public void cache() {
@@ -32,6 +34,7 @@ public class CachedAspect {
 //        joinPoint.getSignature().get
 //        Optional.ofNullable(tmp).ifPresent();
         if (tmp.length != 0)
-        redisTemplate.opsForValue().set("a","1");
+        redisTemplate.opsForValue().set("a",new UserBuilder().setName("a").createUser());
+        User aa = (User)redisTemplate.opsForValue().get("a");
     }
 }
