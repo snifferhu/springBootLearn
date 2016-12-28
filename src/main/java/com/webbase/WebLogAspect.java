@@ -23,7 +23,10 @@ import java.util.Arrays;
 public class WebLogAspect {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+
+
     @Pointcut("execution(public * com.*.controller..*.*(..))")
+//    @Pointcut("@annotation(com.common.cache.annotation.Cached)")
     public void webLog() {
     }
 
@@ -46,4 +49,7 @@ public class WebLogAspect {
         // 处理完请求，返回内容
         logger.info("RESPONSE : " + ret);
     }
+
+
+
 }
