@@ -1,15 +1,16 @@
 package com.demo.controller.bean;
 
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Size;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * @auth snifferhu
  * @date 2016/12/18 14:16
  */
-public class User {
+public class User implements Serializable {
     private Long id;
 
     @NotNull

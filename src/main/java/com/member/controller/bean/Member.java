@@ -3,12 +3,13 @@ package com.member.controller.bean;
 import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * @auth snifferhu
  * @date 2016/12/18 11:29
  */
-public class Member {
+public class Member implements Serializable {
 
     private long id;
     @Size(max=16)
