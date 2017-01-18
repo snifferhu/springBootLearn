@@ -1,4 +1,4 @@
-package com.webbase;
+package com.common.webbase;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -20,7 +20,7 @@ import java.util.Arrays;
  */
 @Aspect
 @Component
-public class WebLogAspect {
+public class LogAspect {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
 
@@ -49,7 +49,4 @@ public class WebLogAspect {
         // 处理完请求，返回内容
         logger.info("RESPONSE : " + ret);
     }
-
-
-
 }

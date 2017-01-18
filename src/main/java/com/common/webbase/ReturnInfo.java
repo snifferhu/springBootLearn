@@ -1,21 +1,20 @@
-package com.webbase;
+package com.common.webbase;
 
 /**
  * @auth snifferhu
- * @date 2016/12/22 22:21
+ * @date 2016/12/22 22:22
  */
-public class ErrorInfo<T> {
-    public static final Integer OK = 0;
-    public static final Integer ERROR = 100;
+public class ReturnInfo<T> {
+    public static final Integer OK = 1;
     private Integer code;
     private String message;
     private String url;
     private T data;
 
-    public ErrorInfo() {
+    public ReturnInfo() {
     }
 
-    public ErrorInfo(Integer code, String message, String url, T data) {
+    public ReturnInfo(Integer code, String message, String url, T data) {
         this.code = code;
         this.message = message;
         this.url = url;
@@ -24,10 +23,6 @@ public class ErrorInfo<T> {
 
     public static Integer getOK() {
         return OK;
-    }
-
-    public static Integer getERROR() {
-        return ERROR;
     }
 
     public Integer getCode() {
@@ -64,7 +59,7 @@ public class ErrorInfo<T> {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("ErrorInfo{");
+        final StringBuilder sb = new StringBuilder("ReturnInfo{");
         sb.append("code=").append(code);
         sb.append(", message='").append(message).append('\'');
         sb.append(", url='").append(url).append('\'');

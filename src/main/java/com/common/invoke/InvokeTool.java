@@ -19,40 +19,28 @@ import java.util.stream.Stream;
 public class InvokeTool {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private final static Map<String,Method> methodCache = new ConcurrentHashMap<>(1024);
+    private final static Map<String, Method> methodCache = new ConcurrentHashMap<>(1024);
 
-    public Annotation getAnnotation(JoinPoint jp,Class targetAnnotation){
-        Class<?> clazz = jp.getTarget().getClass();
-        String methodName = jp.getSignature().getName();
-
-        if (methodCache.containsKey(methodName)){
-            return methodCache.get(methodName).getAnnotation(targetAnnotation);
-        }
-        Method[] methods = clazz.getMethods();
-        return Stream.of(methods)
-                .filter(x -> x.getName().equals(methodName))
-                .findAny()
-                .orElseThrow(() -> {
-                    logger.error("invoke annotation not found!methodName={}, annotation={}",methodName,targetAnnotation);
-                    return new RuntimeException(String.format("invoke annotation not found!methodName={}, annotation={}",methodName,targetAnnotation));
-                })
-                .getAnnotation(targetAnnotation);
+    public Annotation getAnnotation(JoinPoint jp, Class targetAnnotation) {
+        return getMethod(jp).getAnnotation(targetAnnotation);
     }
 
-    public Method getMethod(JoinPoint jp,Class targetAnnotation){
+    public Method getMethod(JoinPoint jp) {
         Class<?> clazz = jp.getTarget().getClass();
         String methodName = jp.getSignature().getName();
 
-        if (methodCache.containsKey(methodName)){
+        if (methodCache.containsKey(methodName)) {
             return methodCache.get(methodName);
         }
 
-        return Stream.of(clazz.getMethods())
+        Method method =  Stream.of(clazz.getMethods())
                 .filter(x -> x.getName().equals(methodName))
                 .findAny()
                 .orElseThrow(() -> {
-                    logger.error("invoke annotation not found!methodName={}, annotation={}",methodName,targetAnnotation);
-                    return new RuntimeException(String.format("invoke annotation not found!methodName={}, annotation={}",methodName,targetAnnotation));
+                    logger.error("invoke annotation not found!methodName={}", methodName);
+                    return new RuntimeException(String.format("invoke annotation not found!methodName={}", methodName));
                 });
+        methodCache.put(methodName,method);
+        return method;
     }
 }

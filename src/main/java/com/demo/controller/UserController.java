@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * The value may indicate a suggestion for a logical component name,
  * to be turned into a Spring bean in case of an autodetected component.
  */
-@RestController("/users")
+@RestController()
 @RequestMapping(value = "/users")
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -46,6 +46,7 @@ public class UserController {
     }
 
     @ApiOperation(value="获取用户详细信息", notes="根据url的id来获取用户详细信息")
+    @Cached(key = "user")
     @GetMapping(value = "/{id}")
     public User getUserById(@PathVariable Long id) {
         return users.get(id);
@@ -70,7 +71,6 @@ public class UserController {
 
     @ApiOperation(value="创建用户", notes="根据User对象创建用户")
     @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
-    @Cached(key = "user")
     @PostMapping
     public String addUser(@Valid @RequestBody User user) {
         if (user != null && users.containsKey(user.getId())) {
