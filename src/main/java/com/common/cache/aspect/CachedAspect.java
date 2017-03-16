@@ -36,10 +36,10 @@ public class CachedAspect {
     public void afterReturningCache() {
     }
 
-    @Around(value = "@annotation(com.common.cache.annotation.Cached)",argNames = "id")
-    public void around(Long id){
-
-    }
+//    @Around(value = "@annotation(com.common.cache.annotation.Cached)",argNames = "id")
+//    public void around(Long id){
+//
+//    }
 
     @AfterReturning(pointcut = "afterReturningCache()",returning = "returnValue")
     public void cache(JoinPoint joinPoint, Object returnValue) throws Throwable {
