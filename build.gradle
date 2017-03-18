@@ -43,6 +43,12 @@ version "${self_verion}"
 
 repositories {
     mavenCentral()
+    mavenLocal()
+    jcenter()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+    maven { url "http://repo.spring.io/plugins-release" }
+    maven { url 'https://repo.spring.io/libs-milestone' }
 }
 
 sourceCompatibility = 1.8
@@ -60,6 +66,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter:${spring_boot_starter_version}")
     compile("org.springframework.boot:spring-boot-starter-web:${spring_boot_starter_version}")
     compile("org.springframework.boot:spring-boot-starter-redis:${spring_boot_starter_version}")
+    compile('org.springframework.cloud:spring-cloud-starter-eureka')
 
     //for logback
     compile("net.logstash.logback:logstash-logback-encoder:4.4")
@@ -67,15 +74,3 @@ dependencies {
 
     testCompile("org.springframework.boot:spring-boot-starter-test:${spring_boot_starter_version}")
 }
-
-
-uploadArchives {
-    repositories.mavenDeployer {
-        repository(url: "http://localhost:8088/nexus/content/repositories/snapshots/") {
-            authentication(userName: "admin", password: "admin123")
-            pom.groupId = "com.juvenxu"
-            pom.artifactId = "account-captcha"
-        }
-    }
-}
-
