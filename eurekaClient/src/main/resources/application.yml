@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: eureka-clients
+
+server:
+  port: 2000
+
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://192.168.254.103:1111/eureka/
+    register-with-eureka:  true
+    fetchRegistry: true
+  instance:
+    hostname: localhost
