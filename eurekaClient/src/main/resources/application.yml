@@ -1,6 +1,6 @@
 spring:
   application:
-    name: eureka-clients
+    name: compute-service
 
 server:
   port: 2000
