@@ -51,5 +51,6 @@
 		<module>eurekaClient</module>
 		<module>ribbon</module>
 		<module>ribbon-eureka</module>
+		<module>feign</module>
 	</modules>
 </project>
