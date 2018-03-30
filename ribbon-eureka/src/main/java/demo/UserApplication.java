@@ -1,4 +1,4 @@
-package com.example.demo;
+package demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * @auth snifferhu
- * @date 2018/3/15 22:13
+ * @date 2018-03-30 14:02:55
  */
 @RestController
 public class UserApplication {

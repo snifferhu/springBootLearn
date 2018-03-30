@@ -1,6 +1,6 @@
 spring:
   application:
-    name: compute-service
+    name: simple
 
 server:
   port: 2000
@@ -8,7 +8,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone:  http://127.0.0.1:1111/eureka/
+      defaultZone:  http://127.0.0.1:${eureka.port:1111}/eureka/
     register-with-eureka:  true
     fetchRegistry: true
   instance:

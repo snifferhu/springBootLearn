@@ -4,8 +4,6 @@ spring:
 server:
   port: 3333
 
-#eureka.client.serviceUrl.defaultZone=http://localhost:1111/eureka/
-
 compute-service:
   ribbon:
     eureka:
