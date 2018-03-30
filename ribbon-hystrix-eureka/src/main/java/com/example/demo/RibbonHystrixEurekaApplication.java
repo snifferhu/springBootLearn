@@ -8,9 +8,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableCircuitBreaker
-public class RibbonHystrixApplication {
+public class RibbonHystrixEurekaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RibbonHystrixApplication.class, args);
+		SpringApplication.run(RibbonHystrixEurekaApplication.class, args);
 	}
 }
