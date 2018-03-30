@@ -51,6 +51,8 @@
 		<module>eurekaClient</module>
 		<module>ribbon</module>
 		<module>ribbon-eureka</module>
-		<module>feign</module>
+		<module>ribbon-hystrix</module>
+		<module>ribbon-hystrix-eureka</module>
+        <module>feign</module>
 	</modules>
 </project>

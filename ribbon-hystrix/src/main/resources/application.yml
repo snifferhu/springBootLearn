@@ -8,5 +8,5 @@ simple:
   ribbon:
     eureka:
       enabled: false
-    listOfServers: localhost:2000,localhost:2002
+    listOfServers: localhost:2000
     ServerListRefreshInterval: 15000

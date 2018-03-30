@@ -33,7 +33,7 @@ public class UserApplication {
 
     @GetMapping(value = "/add")
     public String add() {
-        return restTemplate.getForEntity("http://compute-service/add?a=10&b=20", String.class).getBody();
+        return restTemplate.getForEntity("http://simple/add?a=10&b=20", String.class).getBody();
     }
 
     @RequestMapping("/")
