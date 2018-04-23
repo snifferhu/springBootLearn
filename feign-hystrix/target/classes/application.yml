@@ -2,7 +2,7 @@ spring:
   application:
     name: feign-consumer
 server:
-  port: 3335
+  port: 3333
 
 eureka:
   instance:

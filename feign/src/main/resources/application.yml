@@ -11,3 +11,15 @@ eureka:
     registryFetchIntervalSeconds: 5
     serviceUrl:
       defaultZone: http://localhost:${eureka.port:1111}/eureka/
+
+feign:
+  histrix:
+    enabled: false
+
+hystrix:
+  command:
+    choose:
+      default:
+        execution:
+          timeout:
+            enabled: false
