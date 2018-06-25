@@ -58,5 +58,6 @@
         <module>feign</module>
 		<module>feign-hystrix</module>
 		<module>pojo</module>
-	</modules>
+        <module>oauth</module>
+    </modules>
 </project>
