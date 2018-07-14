@@ -15,6 +15,12 @@ public class Customer {
 
     public Customer() {}
 
+    public Customer(Student other) {
+        this.id = other.id;
+        this.firstName = other.firstName;
+        this.lastName = other.lastName;
+    }
+
     public Customer(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
