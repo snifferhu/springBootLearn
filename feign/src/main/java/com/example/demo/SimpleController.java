@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 /**
  * @auth snifferhu
  * @date 2018/4/1 11:22
@@ -27,5 +29,14 @@ public class SimpleController implements SimpleService{
     @Override
     public String greet() {
         return client.greet();
+    }
+
+    @RequestMapping(value = "/null")
+    public Map nullTest(){
+        Map map = null;
+        if (true){
+            return map;
+        }
+        return null;
     }
 }
