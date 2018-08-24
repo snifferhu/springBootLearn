@@ -60,5 +60,6 @@
 		<module>pojo</module>
         <module>oauth</module>
 		<module>config-server</module>
+		<module>hystrix-dashboard</module>
     </modules>
 </project>
