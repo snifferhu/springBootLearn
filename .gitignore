@@ -24,4 +24,4 @@ out/*
 build
 logs
 *.rdb
-.iml
+*.iml
