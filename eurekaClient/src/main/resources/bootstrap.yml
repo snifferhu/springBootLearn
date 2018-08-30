@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: configSpace
+  cloud:
+    config:
+      uri: http://localhost:7001
+      discovery:
+        enabled: true
+
+eureka:
+  instance:
+    configServer:
+      metadataMap:hju
+        configPath: /configSpace
+
+encrypt:
+  failOnError: false

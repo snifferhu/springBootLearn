@@ -20,7 +20,5 @@ public class ProxySellTicketsServiceImpl implements SellTicketsService {
         return service.sell(type,amount);
     }
 
-    public static void main(String[] args) {
-        System.out.println(new ProxySellTicketsServiceImpl().sell("bus",BigDecimal.ONE));
-    }
+
 }
