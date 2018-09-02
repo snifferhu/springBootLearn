@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -14,18 +14,13 @@ import org.springframework.web.client.RestTemplate;
  * @date 2018/3/15 22:13
  */
 @RestController
-public class UserApplication {
-
-    @Bean
-    @LoadBalanced
-    RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+@RequestMapping(value = "/user")
+public class UserController {
 
     @Autowired
     RestTemplate restTemplate;
 
-    @RequestMapping("/hi")
+    @RequestMapping(value = "/hi")
     public String hi(@RequestParam(value = "name", defaultValue = "Artaban") String name) {
         String greeting = this.restTemplate.getForObject("http://simple/greeting", String.class);
         return String.format("%s, %s!", greeting, name);
@@ -36,7 +31,7 @@ public class UserApplication {
         return restTemplate.getForEntity("http://simple/add?a=10&b=20", String.class).getBody();
     }
 
-    @RequestMapping("/")
+    @RequestMapping("hello")
     public String hello() {
         return this.restTemplate.getForObject("http://simple/", String.class);
     }

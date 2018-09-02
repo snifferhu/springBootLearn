@@ -2,11 +2,11 @@ spring:
   application:
     name: ribbon-consumer
 server:
-  port: 3333
+  port: 3335
 
 simple:
   ribbon:
     eureka:
       enabled: false
-    listOfServers: localhost:2000
+    listOfServers: localhost:1111
     ServerListRefreshInterval: 15000
