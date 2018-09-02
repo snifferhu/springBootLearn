@@ -16,17 +16,10 @@ spring:
         allow: true
 
 
-server:
-  port: 2000
+#server:
+#  port: 2000
 
-eureka:
-  client:
-    service-url:
-      defaultZone:  http://127.0.0.1:${eureka.port:1111}/eureka/
-    register-with-eureka:  true
-    fetchRegistry: true
-  instance:
-    hostname: localhost
+
 
 #mybatis
 mybatis:
@@ -48,8 +41,15 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
 
+info:
+  component: Config Samples
+endpoints:
+  restart:
+    enabled: true
 logging:
-  level:
+  levels:
+    org.springframework.boot.env.PropertySourcesLoader: TRACE
+    org.springframework.web: DEBUG
     root: WARN
     tk:
       mybatis:

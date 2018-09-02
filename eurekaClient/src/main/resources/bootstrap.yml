@@ -1,17 +1,14 @@
-spring:
-  application:
-    name: configSpace
-  cloud:
-    config:
-      uri: http://localhost:7001
-      discovery:
-        enabled: true
-
-eureka:
-  instance:
-    configServer:
-      metadataMap:hju
-        configPath: /configSpace
+server:
+  port: 7002
 
 encrypt:
   failOnError: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://127.0.0.1:1111/eureka/
+    register-with-eureka:  true
+    fetchRegistry: true
+  instance:
+    hostname: localhost
