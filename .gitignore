@@ -25,3 +25,5 @@ build
 logs
 *.rdb
 *.iml
+
+*/target/*
