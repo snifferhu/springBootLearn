@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.web;
 
+import com.example.demo.service.SimpleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

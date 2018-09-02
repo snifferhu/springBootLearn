@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +13,6 @@ import org.springframework.web.client.RestTemplate;
  */
 @Service
 public class SimpleServiceImpl implements SimpleService{
-    @Bean
-    @LoadBalanced
-    RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 
     @Autowired
     RestTemplate restTemplate;
