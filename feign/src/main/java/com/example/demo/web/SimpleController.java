@@ -1,5 +1,7 @@
-package com.example.demo;
+package com.example.demo.web;
 
+import com.example.demo.client.SimpleClient;
+import com.example.demo.service.SimpleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,9 +14,10 @@ import java.util.Map;
  * @date 2018/4/1 11:22
  */
 @RestController
-public class SimpleController implements SimpleService{
+public class SimpleController implements SimpleService {
     @Autowired
     SimpleClient client;
+//    private SimpleService client;
 
     @Override
     public String home() {

@@ -1,5 +1,7 @@
-package com.example.demo;
+package com.example.demo.service;
 
+import com.example.demo.HystrixClientFallbackFactory;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @auth snifferhu
  * @date 2018/4/1 11:21
  */
+@FeignClient(value = "simple")
 public interface SimpleService {
     @GetMapping(value = "/")
     String home();

@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.client.SimpleClient;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;

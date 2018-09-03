@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.service;
 
+import com.example.demo.client.SimpleClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,9 +10,9 @@ import org.springframework.stereotype.Service;
  * @date 2018/3/31 10:44
  */
 @Service
-public class SimpleService {
+public class SimpleServiceImpl {
     @Autowired
-    Simple client;
+    SimpleClient client;
 
     @HystrixCommand(fallbackMethod = "reliable")
     public String home() {

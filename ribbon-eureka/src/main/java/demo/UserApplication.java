@@ -16,11 +16,6 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class UserApplication {
 
-    @Bean
-    @LoadBalanced
-    RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 
     @Autowired
     RestTemplate restTemplate;
