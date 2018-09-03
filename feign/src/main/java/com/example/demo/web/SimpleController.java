@@ -1,6 +1,5 @@
 package com.example.demo.web;
 
-import com.example.demo.client.SimpleClient;
 import com.example.demo.service.SimpleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +15,7 @@ import java.util.Map;
 @RestController
 public class SimpleController implements SimpleService {
     @Autowired
-    SimpleClient client;
-//    private SimpleService client;
+    private SimpleService client;
 
     @Override
     public String home() {

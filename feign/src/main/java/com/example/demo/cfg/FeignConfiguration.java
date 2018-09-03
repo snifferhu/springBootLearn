@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Scope;
  * @auth snifferhu
  * @date 2018/4/1 10:14
  */
-@Configuration
+//@Configuration
 public class FeignConfiguration {
-    @Bean
-    @Scope("prototype")
+//    @Bean
+//    @Scope("prototype")
     public Feign.Builder feignBuilder() {
         return Feign.builder();
     }

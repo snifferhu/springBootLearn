@@ -16,25 +16,6 @@ public class FeignApplication {
 		SpringApplication.run(FeignApplication.class, args);
 	}
 
-
-	static class HystrixClientFallback implements SimpleClient {
-
-		@Override
-		public String home() {
-			return "oops";
-		}
-
-		@Override
-		public String add(@RequestParam(value = "a") Integer a, @RequestParam(value = "b") Integer b) {
-			return "oops";
-		}
-
-		@Override
-		public String greet() {
-			return "oops";
-		}
-	}
-
 }
 
 
