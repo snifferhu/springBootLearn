@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-@EnableCircuitBreaker
 public class FeignHystrixApplication {
 
 	public static void main(String[] args) {

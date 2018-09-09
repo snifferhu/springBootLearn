@@ -1,6 +1,6 @@
 package com.example.demo.web;
 
-import com.example.demo.service.SimpleServiceImpl;
+import com.example.demo.service.SimpleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FeignController {
     @Autowired
-    SimpleServiceImpl service;
+    SimpleService service;
 
     @RequestMapping("/")
     public String hello() {
